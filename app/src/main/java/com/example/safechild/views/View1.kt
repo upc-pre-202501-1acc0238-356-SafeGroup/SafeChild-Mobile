@@ -1,6 +1,6 @@
 package com.example.safechild.views
 
-import TopBar
+import com.example.safechild.components.TopBar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width

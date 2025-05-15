@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.android)  
     alias(libs.plugins.kotlin.compose)
     id("kotlin-android")
     id("kotlin-kapt")
@@ -41,6 +41,9 @@ android {
     }
 }
 
+val compose_version = "1.3.0"
+
+
 dependencies {
 
     //navigator
@@ -49,19 +52,12 @@ dependencies {
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
-// To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
-// optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
-// optional - RxJava2 support for Room
     implementation("androidx.room:room-rxjava2:$room_version")
-// optional - RxJava3 support for Room
     implementation("androidx.room:room-rxjava3:$room_version")
-// optional - Guava support for Room, including Opt
     implementation("androidx.room:room-guava:$room_version")
-// optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
-// optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
 
     //retrofit
@@ -79,11 +75,23 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+
+    implementation("androidx.compose.ui:ui:$compose_version")
+    implementation("androidx.compose.material3:material3:$compose_version")
+    implementation("androidx.compose.runtime:runtime:$compose_version")
+    implementation("androidx.compose.ui:ui-tooling:$compose_version")
+    implementation("androidx.compose.foundation:foundation:$compose_version")
+    implementation("androidx.compose.material:material:$compose_version")
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
