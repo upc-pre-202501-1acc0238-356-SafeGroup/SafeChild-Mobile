@@ -15,4 +15,19 @@ interface ApiService {
         @Path("senderId") senderId: Long,
         @Path("receiverId") receiverId: Long
     ): Call<List<Message>>
+
+
+    @GET("api/v1/tutors")
+    fun getTutors(): Call<List<Tutor>>
+
+    @GET("api/v1/tutors/{id}")
+    fun getTutorById(
+        @Path("id") id: Long
+    ): Call<Tutor>
+
+    @GET("api/v1/reservations/{tutorId}/{caregiverId}")
+    fun getReservations(
+        @Path("tutorId") tutorId: Long,
+        @Path("caregiverId") caregiverId: Long
+    ): Call<List<Reservation>>
 }
