@@ -21,11 +21,7 @@ fun View1(nav:NavHostController){
 
     Scaffold (
         modifier = Modifier.fillMaxSize(),
-        topBar = {
-            TopBar(
-                onOpenDrawer = {}
-            )
-        },
+
 
     ){
             innerPadding->Principal(
@@ -46,7 +42,7 @@ fun Principal(modifier: Modifier,nav: NavHostController){
             .padding(vertical = 50.dp)
             .width(300.dp),
 
-        onClick = { nav.navigate("P2") }
+        onClick = { nav.navigate("Payments") }
     ){
         Text(
             text = "View2",fontSize = 20.sp,
