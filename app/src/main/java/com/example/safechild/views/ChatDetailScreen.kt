@@ -19,16 +19,13 @@ import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.platform.LocalContext
 import com.example.safechild.components.TopBar
-import com.example.safechild.network.ApiService
-import com.example.safechild.network.CompleteName
-import com.example.safechild.network.Message
-import com.example.safechild.network.Person
+import com.example.safechild.network.entities.CompleteName
+import com.example.safechild.network.entities.Message
+import com.example.safechild.network.entities.Person
 import com.example.safechild.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 data class MessageItem(val sender: String, val message: String)
 
@@ -59,7 +56,10 @@ fun ChatDetailScreen(navController: NavHostController, chatName: String, senderI
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopBar(onOpenDrawer = {})
+            TopBar(
+                onOpenDrawer = {},
+                navController = navController  // Pasa el navController aquí
+            )
         }
     ) { innerPadding ->
         Column(

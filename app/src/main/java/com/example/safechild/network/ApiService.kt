@@ -1,7 +1,11 @@
 package com.example.safechild.network
 
+import com.example.safechild.network.entities.Caregiver
+import com.example.safechild.network.entities.Message
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -15,4 +19,10 @@ interface ApiService {
         @Path("senderId") senderId: Long,
         @Path("receiverId") receiverId: Long
     ): Call<List<Message>>
+
+    @POST("api/v1/caregiver")
+    fun createCaregiver(@Body caregiver: Caregiver): Call<Caregiver>
+
+    @GET("api/v1/caregiver")
+    fun getCaregivers(): Call<List<Caregiver>>
 }

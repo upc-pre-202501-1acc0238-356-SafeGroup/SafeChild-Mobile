@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.safechild.network.RetrofitClient
-import com.example.safechild.network.Message
+import com.example.safechild.network.entities.Message
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

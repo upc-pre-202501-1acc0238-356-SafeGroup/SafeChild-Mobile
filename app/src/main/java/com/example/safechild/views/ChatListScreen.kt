@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.safechild.components.TopBar
-import com.example.safechild.network.Message
+import com.example.safechild.network.entities.Message
 import com.example.safechild.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,7 +58,7 @@ fun ChatListScreen(navController: NavHostController) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopBar(onOpenDrawer = {}) }
+        topBar = { TopBar(onOpenDrawer = {},  navController = navController) }
     ) { innerPadding ->
         if (isLoading) {
             Box(

@@ -21,7 +21,8 @@ fun View2(nav:NavHostController){
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopBar(
-                onOpenDrawer = {}
+                onOpenDrawer = {},
+                navController = nav
             )
         },
     ){

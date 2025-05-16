@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.safechild.nav.Navigator
 
 @Composable
 fun View1(nav:NavHostController){
@@ -23,7 +24,8 @@ fun View1(nav:NavHostController){
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopBar(
-                onOpenDrawer = {}
+                onOpenDrawer = {},
+                navController = nav
             )
         },
 
