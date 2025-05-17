@@ -27,7 +27,8 @@ import com.example.safechild.components.TopBar
 fun MyServices(navController: NavController) {
 
 
-    Scaffold(
+
+    /*Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = { TopBar(onOpenDrawer = {}) }
     ) {
@@ -90,6 +91,6 @@ fun MyServices(navController: NavController) {
             }
         }
 
-    }
+    }*/
 
 }

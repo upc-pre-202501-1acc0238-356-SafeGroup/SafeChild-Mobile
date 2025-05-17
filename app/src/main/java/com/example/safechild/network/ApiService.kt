@@ -1,6 +1,7 @@
 package com.example.safechild.network
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -17,17 +18,11 @@ interface ApiService {
     ): Call<List<Message>>
 
 
-    @GET("api/v1/tutors")
-    fun getTutors(): Call<List<Tutor>>
+    @GET("api/v1/caregiver")
+    suspend fun getCaregivers(): Response<List<Caregiver>>
 
-    @GET("api/v1/tutors/{id}")
-    fun getTutorById(
-        @Path("id") id: Long
-    ): Call<Tutor>
 
-    @GET("api/v1/reservations/{tutorId}/{caregiverId}")
-    fun getReservations(
-        @Path("tutorId") tutorId: Long,
-        @Path("caregiverId") caregiverId: Long
-    ): Call<List<Reservation>>
+    @GET("api/v1/caregiver/{id}")
+    suspend fun getCaregiverId(@Path("id")id:Int): Response<Caregiver>
+
 }
