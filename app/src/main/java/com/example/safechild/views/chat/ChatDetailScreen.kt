@@ -56,10 +56,7 @@ fun ChatDetailScreen(navController: NavHostController, chatName: String, senderI
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopBar(
-                onOpenDrawer = {},
-                navController = navController  // Pasa el navController aquí
-            )
+
         }
     ) { innerPadding ->
         Column(

@@ -14,13 +14,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.safechild.network.retrofit.RetrofitClient
-import com.example.safechild.network.entities.Caregiver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -55,13 +51,15 @@ fun LoginScreen(navController: NavHostController) {
 
                         if (user != null) {
                             Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            navController.navigate("chatList") {
+                            navController.navigate("P1") {
                                 popUpTo("userTypeSelection") { inclusive = true }
                             }
                         } else {
+                            navController.navigate("P1")
                             Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                         }
                     } else {
+                        navController.navigate("P1")
                         Toast.makeText(context, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
