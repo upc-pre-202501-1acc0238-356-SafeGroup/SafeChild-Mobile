@@ -45,7 +45,7 @@ fun Principal(modifier: Modifier,nav: NavHostController){
         onClick = { nav.navigate("Payments") }
     ){
         Text(
-            text = "View2",fontSize = 20.sp,
+            text = "Ver Métodos de pago",fontSize = 20.sp,
             color = Color.White,fontWeight = FontWeight.Bold
         )
     }

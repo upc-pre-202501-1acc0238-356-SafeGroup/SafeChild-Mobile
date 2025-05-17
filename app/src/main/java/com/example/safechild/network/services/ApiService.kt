@@ -2,6 +2,7 @@ package com.example.safechild.network.services
 
 import com.example.safechild.network.entities.Caregiver
 import com.example.safechild.network.entities.Message
+import com.example.safechild.network.entities.Schedule
 import com.example.safechild.network.room.model.beans.PaymentMethod
 import retrofit2.Call
 import retrofit2.Response
@@ -26,8 +27,17 @@ interface ApiService {
     fun createCaregiver(@Body caregiver: Caregiver): Call<Caregiver>
 
     @GET("api/v1/caregiver")
-    fun getCaregivers(): Call<List<Caregiver>>
+    suspend fun getCaregivers(): Response<List<Caregiver>>
+
+
+    @GET("api/v1/caregiver/{id}")
+    suspend fun getCaregiverId(@Path("id")id:Int): Response<Caregiver>
+
+    @GET("api/v1/caregiver-schedule/{id}")
+    suspend fun getScheduleId(@Path("id") id: Int): Response<List<Schedule>>
 
     @GET("PaymentMethods/{id}")
     suspend fun getPaymentMethodId(@Path("id")id: Int): Response<PaymentMethod>
+
+
 }

@@ -9,17 +9,21 @@ package com.example.safechild.views.nav
     import androidx.compose.runtime.Composable
     import androidx.compose.runtime.collectAsState
     import androidx.compose.ui.Modifier
+    import androidx.lifecycle.viewmodel.compose.viewModel
     import androidx.navigation.NavHostController
     import androidx.navigation.compose.NavHost
     import androidx.navigation.compose.composable
     import androidx.navigation.compose.rememberNavController
     import com.example.safechild.viewmodel.PaymentMethodViewModel
+    import com.example.safechild.viewmodel.ServViewModel
     import com.example.safechild.views.ChatDetailScreen
     import com.example.safechild.views.ChatListScreen
     import com.example.safechild.views.View1
     import com.example.safechild.views.iam.UserTypeSelectionScreen
     import com.example.safechild.views.iam.login.LoginScreen
     import com.example.safechild.views.iam.signup.CaregiverRegistrationScreen
+    import com.example.safechild.views.services.ServiceDetails
+    import com.example.safechild.views.services.ServiceList
 
 @Composable
 fun Navigator(
@@ -41,7 +45,7 @@ fun Navigator(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "userTypeSelection",
+            startDestination = "login",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("userTypeSelection") {
@@ -63,6 +67,17 @@ fun Navigator(
             }
             composable("caregiverRegistration") {
                 CaregiverRegistrationScreen(navController = navController)
+            }
+
+            composable("serviceList") {
+                val servViewModel: ServViewModel = viewModel()
+                ServiceList(servViewModel ,navController = navController)
+            }
+
+            composable("serviceDetails/{id}") { backStackEntry ->
+                val id = backStackEntry.arguments?.getString("id")?.toLong() ?: 0L
+                val servViewModel: ServViewModel = viewModel()
+                ServiceDetails(id = id, viewModel = servViewModel, navController = navController)
             }
         }
     }
