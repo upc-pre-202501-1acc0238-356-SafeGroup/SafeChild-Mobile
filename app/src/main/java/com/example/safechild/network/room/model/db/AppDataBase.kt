@@ -1,11 +1,11 @@
-package com.example.safechild.model.db
+package com.example.safechild.network.room.model.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.Room
-import com.example.safechild.model.beans.PaymentMethod
-import com.example.safechild.model.dao.PaymentMethodDAO
+import com.example.safechild.network.room.model.beans.PaymentMethod
+import com.example.safechild.network.room.model.dao.PaymentMethodDAO
 
 
 @Database(entities = [PaymentMethod::class], version = 2)

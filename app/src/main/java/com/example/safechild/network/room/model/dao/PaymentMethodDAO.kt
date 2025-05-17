@@ -1,11 +1,11 @@
-package com.example.safechild.model.dao
+package com.example.safechild.network.room.model.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.safechild.model.beans.PaymentMethod
+import com.example.safechild.network.room.model.beans.PaymentMethod
 
 @Dao
 interface PaymentMethodDAO {

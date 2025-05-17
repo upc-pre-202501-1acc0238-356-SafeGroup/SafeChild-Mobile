@@ -5,11 +5,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import com.example.safechild.model.beans.PaymentMethod
-import com.example.safechild.model.client.RetrofitClient
-import com.example.safechild.model.db.AppDataBase
+import com.example.safechild.network.room.model.beans.PaymentMethod
+import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.network.room.model.db.AppDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

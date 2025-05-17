@@ -1,6 +1,6 @@
-package com.example.safechild.model.response
+package com.example.safechild.network.room.model.response
 
-import com.example.safechild.model.beans.PaymentMethod
+import com.example.safechild.network.room.model.beans.PaymentMethod
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
