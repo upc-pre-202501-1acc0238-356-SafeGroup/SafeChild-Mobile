@@ -25,4 +25,7 @@ interface ApiService {
     @GET("api/v1/caregiver/{id}")
     suspend fun getCaregiverId(@Path("id")id:Int): Response<Caregiver>
 
+    @GET("api/v1/caregiver-schedule/{id}")
+    suspend fun getScheduleId(@Path("id") id: Int): Response<List<Schedule>>
+
 }

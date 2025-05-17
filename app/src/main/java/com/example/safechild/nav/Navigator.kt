@@ -15,7 +15,7 @@ import com.example.safechild.views.ServiceList
 fun Navigator() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "serviceList") {
+    NavHost(navController = navController, startDestination = "") {
         composable("chatList") {
             ChatListScreen(navController = navController)
         }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.safechild.network.Caregiver
 import com.example.safechild.network.RetrofitClient
 import com.example.safechild.network.RetrofitClient.apiService
+import com.example.safechild.network.Schedule
 
 class ServViewModel(): ViewModel() {
 
@@ -43,6 +44,12 @@ class ServViewModel(): ViewModel() {
 
     suspend fun getCaregiverById(id: Long): Caregiver? {
         return apiService.getCaregiverId(id.toInt()).body()
+    }
+
+
+    suspend fun getCaregiverSchedule(id: Int): List<Schedule>? {
+        val response = apiService.getScheduleId(id)
+        return if (response.isSuccessful) response.body() else null
     }
 
     var listCaregivers: MutableList<Caregiver> by mutableStateOf(arrayListOf())

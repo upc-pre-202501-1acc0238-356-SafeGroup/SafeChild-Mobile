@@ -33,18 +33,25 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.safechild.components.TopBar
 import com.example.safechild.network.Caregiver
+import com.example.safechild.network.Schedule
 import com.example.safechild.viewmodel.ServViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
-
 fun ServiceList(viewModel: ServViewModel, navController: NavController) {
     var serviceList: MutableList<Caregiver> by mutableStateOf(arrayListOf())
+    var schedules: MutableMap<Long, List<Schedule>?> by mutableStateOf(mutableMapOf())
 
     androidx.compose.runtime.LaunchedEffect(Unit) {
         viewModel.getCaregivers()
         serviceList = viewModel.listCaregivers
+
+        // Cargar horarios para cada Caregiver
+        serviceList.forEach { caregiver ->
+            val schedule = viewModel.getCaregiverSchedule(caregiver.id.toInt())
+            schedules[caregiver.id] = schedule
+        }
     }
 
     Scaffold(
@@ -70,10 +77,11 @@ fun ServiceList(viewModel: ServViewModel, navController: NavController) {
                     .weight(1f)
                     .fillMaxWidth()
             ) {
-                items(serviceList) {
+                items(serviceList) { caregiver ->
+                    val schedule = schedules[caregiver.id]
                     Card(
                         onClick = {
-                            navController.navigate("ServiceDetails/${it.id}")
+                            navController.navigate("ServiceDetails/${caregiver.id}")
                         },
                         modifier = Modifier
                             .padding(8.dp)
@@ -95,33 +103,41 @@ fun ServiceList(viewModel: ServViewModel, navController: NavController) {
                                     .fillMaxWidth()
                             ) {
                                 Text(
-                                    text = it.completeName,
+                                    text = caregiver.completeName,
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color.Black
                                 )
                                 Text(
-                                    text = it.address,
+                                    text = caregiver.address,
                                     fontSize = 14.sp,
                                     color = Color.Gray
                                 )
                                 Text(
-                                    text = "Servicios completados: ${it.completedServices}",
+                                    text = "Servicios completados: ${caregiver.completedServices}",
                                     fontSize = 14.sp,
                                     color = Color.DarkGray
                                 )
                                 Text(
-                                    text = "Distritos: ${it.districtsScope}",
+                                    text = "Distritos: ${caregiver.districtsScope}",
                                     fontSize = 14.sp,
                                     color = Color.Blue
                                 )
+
+                                // Mostrar horarios si están disponibles
+                                schedule?.forEach {
+                                    Text(
+                                        text = "Día: ${it.weekDay}, Inicio: ${it.startHour}, Fin: ${it.endHour}",
+                                        fontSize = 14.sp,
+                                        color = Color.DarkGray
+                                    )
+                                }
                             }
                         }
                     }
                 }
             }
 
-            // Botón fijo al final
             OutlinedButton(
                 onClick = {},
                 modifier = Modifier
