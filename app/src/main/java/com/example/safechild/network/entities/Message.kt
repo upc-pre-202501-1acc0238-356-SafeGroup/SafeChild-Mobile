@@ -12,9 +12,5 @@ data class Message(
 
 data class Person(
     @SerializedName("id") val id: Long,
-    @SerializedName("completeName") val completeName: CompleteName
-)
-
-data class CompleteName(
-    @SerializedName("completeName") val name: String
+    @SerializedName("username") val username: String
 )

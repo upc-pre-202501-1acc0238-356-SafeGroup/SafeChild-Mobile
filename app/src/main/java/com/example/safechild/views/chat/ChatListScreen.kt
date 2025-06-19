@@ -38,7 +38,7 @@ fun ChatListScreen(navController: NavHostController) {
                     val chatPreviews = messages.map {
                         ChatPreview(
                             receiverId = it.receiver.id,
-                            name = it.receiver.completeName.name
+                            name = it.receiver.username
                         )
                     }.distinctBy { it.receiverId }
 
