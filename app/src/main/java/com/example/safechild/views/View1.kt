@@ -1,6 +1,7 @@
 package com.example.safechild.views
 
 import TopBar
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -35,18 +36,52 @@ fun View1(nav:NavHostController){
 fun Principal(modifier: Modifier,nav: NavHostController){
 
 
-    ElevatedButton(
-        colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
-        modifier = Modifier
-            .padding(50.dp)
-            .padding(vertical = 50.dp)
-            .width(300.dp),
+    Column(){
+        ElevatedButton(
+            colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
+            modifier = Modifier
+                .padding(50.dp)
+                .padding(vertical = 50.dp)
+                .width(300.dp),
 
-        onClick = { nav.navigate("Payments") }
-    ){
-        Text(
-            text = "View2",fontSize = 20.sp,
-            color = Color.White,fontWeight = FontWeight.Bold
-        )
+            onClick = { nav.navigate("Payments") }
+        ){
+            Text(
+                text = "Pagos",fontSize = 20.sp,
+                color = Color.White,fontWeight = FontWeight.Bold
+            )
+        }
+        ElevatedButton(
+            colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
+            modifier = Modifier
+                .padding(50.dp)
+                .padding(vertical = 50.dp)
+                .width(300.dp),
+
+            onClick = { nav.navigate("chatList") }
+        ){
+            Text(
+                text = "Chats",fontSize = 20.sp,
+                color = Color.White,fontWeight = FontWeight.Bold
+            )
+        }
+        ElevatedButton(
+            colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
+            modifier = Modifier
+                .padding(50.dp)
+                .padding(vertical = 50.dp)
+                .width(300.dp),
+
+            onClick = { nav.navigate("serviceList") }
+        ){
+            Text(
+                text = "Servicios",fontSize = 20.sp,
+                color = Color.White,fontWeight = FontWeight.Bold
+            )
+        }
+
+
+
     }
+
 }

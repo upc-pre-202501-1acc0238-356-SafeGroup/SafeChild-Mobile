@@ -58,7 +58,7 @@ fun ChatListScreen(navController: NavHostController) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopBar(onOpenDrawer = {},  navController = navController) }
+        topBar = {  }
     ) { innerPadding ->
         if (isLoading) {
             Box(

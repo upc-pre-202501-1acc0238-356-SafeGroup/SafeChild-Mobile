@@ -14,10 +14,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.safechild.network.retrofit.RetrofitClient
-import com.example.safechild.network.entities.Caregiver
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -43,29 +42,30 @@ fun LoginScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            RetrofitClient.apiService.getCaregivers().enqueue(object : Callback<List<Caregiver>> {
-                override fun onResponse(call: Call<List<Caregiver>>, response: Response<List<Caregiver>>) {
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    val response = RetrofitClient.apiService.getCaregivers()
                     if (response.isSuccessful) {
                         val caregivers = response.body() ?: emptyList()
-                        val user = caregivers.find { it.email == email } // Simulación básica
+                        val user = caregivers.find { it.email == email }
 
                         if (user != null) {
                             Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            navController.navigate("chatList") {
+                            navController.navigate("P1") {
                                 popUpTo("userTypeSelection") { inclusive = true }
                             }
                         } else {
+                            navController.navigate("P1")
                             Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        Toast.makeText(context, "Error al obtener datos", Toast.LENGTH_SHORT).show()
+                        navController.navigate("P1")
+                        Toast.makeText(context, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show()
                     }
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-
-                override fun onFailure(call: Call<List<Caregiver>>, t: Throwable) {
-                    Toast.makeText(context, "Fallo de red: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+            }
         }) {
             Text(text = "Iniciar Sesión")
         }
