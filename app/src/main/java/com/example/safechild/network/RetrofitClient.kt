@@ -3,6 +3,7 @@ package com.example.safechild.network
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.safechild.network.services.ApiService
 
 object RetrofitClient {
 
