@@ -19,10 +19,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.platform.LocalContext
+<<<<<<<< Updated upstream:app/src/main/java/com/example/safechild/views/chat/ChatDetailScreen.kt
 import com.example.safechild.network.entities.CompleteName
 import com.example.safechild.network.entities.Message
 import com.example.safechild.network.entities.Person
 import com.example.safechild.network.retrofit.RetrofitClient
+========
+import com.example.safechild.components.TopBar
+import com.example.safechild.network.ApiService
+import com.example.safechild.network.Message
+import com.example.safechild.network.Person
+import com.example.safechild.network.RetrofitClient
+>>>>>>>> Stashed changes:app/src/main/java/com/example/safechild/views/ChatDetailScreen.kt
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,7 +85,7 @@ fun ChatDetailScreen(navController: NavHostController, chatName: String, senderI
             ) {
                 messages.forEach { msg ->
                     MessageItemView(
-                        sender = msg.sender.completeName.name,
+                        sender = msg.sender.username,
                         message = msg.content
                     )
                 }
@@ -105,8 +113,8 @@ fun ChatDetailScreen(navController: NavHostController, chatName: String, senderI
                     if (message.text.isNotEmpty()) {
                         val newMessage = Message(
                             id = -1,
-                            sender = Person(senderId, CompleteName("Yo")),
-                            receiver = Person(receiverId, CompleteName(chatName)),
+                            sender = Person(senderId, "Yo"),
+                            receiver = Person(receiverId, chatName),
                             content = message.text,
                             timestamp = "ahora"
                         )
