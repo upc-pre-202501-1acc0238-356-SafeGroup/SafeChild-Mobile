@@ -30,10 +30,12 @@ import androidx.compose.ui.draw.clip
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun ServiceDetails(id: Long, viewModel: ServViewModel, navController: NavHostController) {
-    var caregiver by mutableStateOf<Caregiver?>(null)
+    var caregiver by remember { mutableStateOf<Caregiver?>(null) }
 
     LaunchedEffect(id) {
-        caregiver = viewModel.getCaregiverById(id)
+        viewModel.getCaregiverById(id) { loadedCaregiver ->
+            caregiver = loadedCaregiver
+        }
     }
 
     Scaffold(

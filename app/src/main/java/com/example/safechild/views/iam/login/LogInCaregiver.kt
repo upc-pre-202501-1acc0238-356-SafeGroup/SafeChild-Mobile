@@ -17,6 +17,16 @@ import com.example.safechild.network.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextDecoration
+
+import com.example.safechild.network.entities.iam.SignInRequest
+import com.example.safechild.network.entities.iam.SignInResponse
+
+var globalToken: String? = null // Puedes mover esto a un ViewModel o DataStore
+
+
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -32,35 +42,27 @@ fun LoginScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Iniciar Sesión", fontSize = 24.sp)
-
         Spacer(modifier = Modifier.height(16.dp))
-
         TextField(value = email, onValueChange = { email = it }, label = { Text("Email") })
         Spacer(modifier = Modifier.height(8.dp))
         TextField(value = password, onValueChange = { password = it }, label = { Text("Contraseña") })
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
             CoroutineScope(Dispatchers.Main).launch {
                 try {
-                    val response = RetrofitClient.apiService.getCaregivers()
-                    if (response.isSuccessful) {
-                        val caregivers = response.body() ?: emptyList()
-                        val user = caregivers.find { it.email == email }
-
-                        if (user != null) {
-                            Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            navController.navigate("P1") {
-                                popUpTo("userTypeSelection") { inclusive = true }
-                            }
-                        } else {
-                            navController.navigate("P1")
-                            Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                    val response = RetrofitClient.apiService.signIn(
+                        SignInRequest(username = email, password = password)
+                    )
+                    if (response.isSuccessful && response.body() != null) {
+                        val signInResponse = response.body()!!
+                        globalToken = signInResponse.token // Guarda el token
+                        Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                        navController.navigate("P1") {
+                            popUpTo("userTypeSelection") { inclusive = true }
                         }
                     } else {
-                        navController.navigate("P1")
-                        Toast.makeText(context, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -69,5 +71,16 @@ fun LoginScreen(navController: NavHostController) {
         }) {
             Text(text = "Iniciar Sesión")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "¿Aún no tienes cuenta? Regístrate",
+            color = Color(0xFF0EA5AA),
+            fontSize = 16.sp,
+            textDecoration = TextDecoration.Underline,
+            modifier = Modifier.clickable {
+                navController.navigate("caregiverSignUp")
+            }
+        )
     }
 }

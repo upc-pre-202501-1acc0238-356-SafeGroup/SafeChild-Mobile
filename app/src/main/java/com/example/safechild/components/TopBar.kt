@@ -1,3 +1,6 @@
+//package com.example.safechild.components
+
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Menu
@@ -11,31 +14,25 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import com.example.safechild.viewmodel.ServViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    onOpenDrawer:()-> Unit,
-    navController: NavHostController
-){
-
+    onOpenDrawer: () -> Unit,
+    navController: NavHostController,
+    servViewModel: ServViewModel
+) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(14,165,170,255),
-
+            containerColor = Color(14, 165, 170, 255),
             titleContentColor = Color.White
         ),
         title = {
-            Text(
-                text = "SAFECHILD",
-            )
+            Text(text = "SAFECHILD")
         },
         navigationIcon = {
-            IconButton(
-                onClick = {
-                    onOpenDrawer()
-                }
-            ) {
+            IconButton(onClick = { onOpenDrawer() }) {
                 Icon(
                     imageVector = Icons.Default.Menu,
                     contentDescription = null,
@@ -44,18 +41,20 @@ fun TopBar(
             }
         },
         actions = {
-            IconButton(
-                onClick = {}
-            ) {
+            IconButton(onClick = { /* Acción para email */ }) {
                 Icon(
                     imageVector = Icons.Default.Email,
                     contentDescription = null,
                     tint = Color.White
                 )
             }
-
             IconButton(
-                onClick = {navController.navigate("caregiverRegistration")}
+                onClick = {
+                    val caregiverId = servViewModel.caregiverId
+                    if (caregiverId != null) {
+                        navController.navigate("caregiverProfile/$caregiverId")
+                    }
+                }
             ) {
                 Icon(
                     imageVector = Icons.Default.Person,
@@ -65,6 +64,4 @@ fun TopBar(
             }
         }
     )
-
-
 }
