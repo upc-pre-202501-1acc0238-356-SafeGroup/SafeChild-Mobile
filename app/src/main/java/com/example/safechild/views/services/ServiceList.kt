@@ -33,22 +33,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Divider
+import androidx.compose.runtime.LaunchedEffect
 
 @SuppressLint("UnrememberedMutableState")
 
-
 @Composable
 fun ServiceList(viewModel: ServViewModel, navController: NavHostController) {
-    var serviceList: MutableList<Caregiver> by mutableStateOf(arrayListOf())
-    var schedules: MutableMap<Long, List<Schedule>?> by mutableStateOf(mutableMapOf())
+    val caregivers = viewModel.caregivers
 
-    androidx.compose.runtime.LaunchedEffect(Unit) {
-        viewModel.getCaregivers()
-        serviceList = viewModel.listCaregivers
-        serviceList.forEach { caregiver ->
-            val schedule = viewModel.getCaregiverSchedule(caregiver.id.toInt())
-            schedules[caregiver.id] = schedule
-        }
+    LaunchedEffect(Unit) {
+        viewModel.loadCaregivers()
     }
 
     Scaffold(
@@ -73,14 +67,13 @@ fun ServiceList(viewModel: ServViewModel, navController: NavHostController) {
                     .weight(1f)
                     .fillMaxWidth()
             ) {
-                items(serviceList) { caregiver ->
-                    val schedule = schedules[caregiver.id]
+                items(caregivers) { caregiver ->
                     ElevatedCard(
                         modifier = Modifier
                             .padding(horizontal = 12.dp, vertical = 6.dp)
                             .fillMaxWidth()
                             .clickable {
-                                navController.navigate("ServiceDetails/${caregiver.id}")
+                                navController.navigate("serviceDetails/${caregiver.id}")
                             },
                         elevation = CardDefaults.elevatedCardElevation(8.dp),
                         colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -122,13 +115,7 @@ fun ServiceList(viewModel: ServViewModel, navController: NavHostController) {
                                     fontSize = 14.sp,
                                     color = MaterialTheme.colorScheme.primary
                                 )
-                                schedule?.forEach {
-                                    Text(
-                                        text = "Día: ${it.weekDay}, Inicio: ${it.startHour}, Fin: ${it.endHour}",
-                                        fontSize = 13.sp,
-                                        color = MaterialTheme.colorScheme.tertiary
-                                    )
-                                }
+                                // Si quieres mostrar horarios, deberás agregarlos al modelo y ViewModel
                             }
                         }
                     }

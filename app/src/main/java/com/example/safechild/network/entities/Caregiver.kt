@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class Caregiver(
     @SerializedName("id") val id: Long,
-    @SerializedName("email") val email: String,
     @SerializedName("completeName") val completeName: String,
     @SerializedName("age") val age: Int,
     @SerializedName("address") val address: String,
