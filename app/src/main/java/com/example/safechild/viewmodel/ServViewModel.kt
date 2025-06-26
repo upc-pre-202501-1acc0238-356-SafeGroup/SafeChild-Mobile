@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.safechild.network.entities.Caregiver
 import com.example.safechild.network.entities.iam.SignUpRequest
 import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.views.iam.login.globalToken
 import kotlinx.coroutines.launch
 
 class ServViewModel : ViewModel() {
@@ -58,6 +59,7 @@ class ServViewModel : ViewModel() {
         loading = true
         viewModelScope.launch {
             try {
+                android.util.Log.d("TOKEN", "Token actual antes de registrar caregiver: $globalToken")
                 val response = RetrofitClient.apiService.createCaregiver(caregiver)
                 if (response.isSuccessful && response.body() != null) {
                     caregiverId = response.body()!!.id

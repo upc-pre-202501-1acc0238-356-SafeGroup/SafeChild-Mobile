@@ -16,7 +16,7 @@ class PaymentMethodViewModel: ViewModel() {
     var paymentMethod: PaymentMethod = PaymentMethod( 1, "","", "", "", "",)
 
     suspend fun getPaymentMethod(id: Int){
-        val response = RetrofitClient.webService.getPaymentMethodId(id)
+        val response = RetrofitClient.apiService.getPaymentMethodId(id)
         if (response.body()!=null){
             paymentMethod = response.body()!!
         }

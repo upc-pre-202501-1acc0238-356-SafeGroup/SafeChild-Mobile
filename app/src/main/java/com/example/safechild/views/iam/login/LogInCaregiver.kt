@@ -56,7 +56,8 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     if (response.isSuccessful && response.body() != null) {
                         val signInResponse = response.body()!!
-                        globalToken = signInResponse.token // Guarda el token
+                        globalToken = signInResponse.token
+                        RetrofitClient.updateToken(globalToken)// Guarda el token
                         Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                         navController.navigate("P1") {
                             popUpTo("userTypeSelection") { inclusive = true }
