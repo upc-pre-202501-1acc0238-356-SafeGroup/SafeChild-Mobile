@@ -3,9 +3,9 @@ package com.example.safechild.viewmodel
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.safechild.network.entities.Caregiver
-import com.example.safechild.network.entities.iam.SignUpRequest
-import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.model.beans.profiles.Caregiver
+import com.example.safechild.model.beans.iam.SignUpRequest
+import com.example.safechild.model.client.RetrofitClient
 import com.example.safechild.views.iam.login.globalToken
 import kotlinx.coroutines.launch
 
@@ -24,7 +24,7 @@ class ServViewModel : ViewModel() {
         loading = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.apiService.getCaregivers()
+                val response = RetrofitClient.profileApiService.getCaregivers()
                 if (response.isSuccessful) {
                     caregivers = response.body() ?: emptyList()
                 }
@@ -38,7 +38,7 @@ class ServViewModel : ViewModel() {
         loading = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.apiService.signUp(
+                val response = RetrofitClient.authApiService.signUp(
                     SignUpRequest(username = email, password = password, roles = listOf("CAREGIVER"))
                 )
                 if (response.isSuccessful) {
@@ -60,7 +60,7 @@ class ServViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 android.util.Log.d("TOKEN", "Token actual antes de registrar caregiver: $globalToken")
-                val response = RetrofitClient.apiService.createCaregiver(caregiver)
+                val response = RetrofitClient.profileApiService.createCaregiver(caregiver)
                 if (response.isSuccessful && response.body() != null) {
                     caregiverId = response.body()!!.id
                     onSuccess(caregiverId!!)
@@ -80,7 +80,7 @@ class ServViewModel : ViewModel() {
         loading = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.apiService.getCaregiverId(id.toInt())
+                val response = RetrofitClient.profileApiService.getCaregiverId(id.toInt())
                 if (response.isSuccessful) {
                     caregiver = response.body()
                     onLoaded(caregiver)
@@ -95,12 +95,11 @@ class ServViewModel : ViewModel() {
         }
     }
 
-    // Actualizar perfil
     fun updateCaregiverProfile(id: Long, caregiver: Caregiver, onSuccess: () -> Unit, onError: (String) -> Unit) {
         loading = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.apiService.updateCaregiver(id, caregiver)
+                val response = RetrofitClient.profileApiService.updateCaregiver(id, caregiver)
                 if (response.isSuccessful) {
                     onSuccess()
                 } else {

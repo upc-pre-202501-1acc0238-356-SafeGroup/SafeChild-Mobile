@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.network.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,8 +20,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 
-import com.example.safechild.network.entities.iam.SignInRequest
-import com.example.safechild.network.entities.iam.SignInResponse
+import com.example.safechild.model.beans.iam.SignInRequest
+import com.example.safechild.model.client.BaseRetrofitClient
+import com.example.safechild.model.client.RetrofitClient
 
 var globalToken: String? = null // Puedes mover esto a un ViewModel o DataStore
 
@@ -51,13 +51,13 @@ fun LoginScreen(navController: NavHostController) {
         Button(onClick = {
             CoroutineScope(Dispatchers.Main).launch {
                 try {
-                    val response = RetrofitClient.apiService.signIn(
+                    val response = RetrofitClient.authApiService.signIn(
                         SignInRequest(username = email, password = password)
                     )
                     if (response.isSuccessful && response.body() != null) {
                         val signInResponse = response.body()!!
                         globalToken = signInResponse.token
-                        RetrofitClient.updateToken(globalToken)// Guarda el token
+                        BaseRetrofitClient.updateToken(globalToken)// Guarda el token
                         Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                         navController.navigate("P1") {
                             popUpTo("userTypeSelection") { inclusive = true }

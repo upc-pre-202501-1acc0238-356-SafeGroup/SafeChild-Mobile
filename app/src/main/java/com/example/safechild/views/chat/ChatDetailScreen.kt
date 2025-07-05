@@ -1,6 +1,5 @@
 package com.example.safechild.views
 
-import TopBar
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
@@ -19,12 +18,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.platform.LocalContext
-import com.example.safechild.network.entities.Message
-import com.example.safechild.network.entities.Person
-import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.model.beans.messaging.Message
+import com.example.safechild.model.beans.messaging.Person
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.safechild.model.client.RetrofitClient
 
 data class MessageItem(val sender: String, val message: String)
 
@@ -37,7 +36,7 @@ fun ChatDetailScreen(navController: NavHostController, chatName: String, senderI
 
     // Llama a la API una vez
     LaunchedEffect(Unit) {
-        RetrofitClient.apiService.getMessages(senderId, receiverId).enqueue(object : Callback<List<Message>> {
+        RetrofitClient.messagingApiService.getMessages(senderId, receiverId).enqueue(object : Callback<List<Message>> {
             override fun onResponse(call: Call<List<Message>>, response: Response<List<Message>>) {
                 if (response.isSuccessful) {
                     messages = response.body() ?: emptyList()

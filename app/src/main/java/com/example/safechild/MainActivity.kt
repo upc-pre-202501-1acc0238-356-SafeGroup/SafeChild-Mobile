@@ -7,8 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
-import com.example.safechild.network.entities.Message
-import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.model.beans.messaging.Message
+import com.example.safechild.model.client.RetrofitClient
 import com.example.safechild.viewmodel.PaymentMethodViewModel
 import com.example.safechild.views.nav.Navigator
 import retrofit2.Call
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         getMessagesFromBackend(3)
     }
     private fun getMessagesFromBackend(chatId: Long) {
-        RetrofitClient.apiService.getChats(chatId).enqueue(object : Callback<List<Message>> {
+        RetrofitClient.messagingApiService.getChats(chatId).enqueue(object : Callback<List<Message>> {
             override fun onResponse(call: Call<List<Message>>, response: Response<List<Message>>) {
                 if (response.isSuccessful) {
                     val messages = response.body()

@@ -10,10 +10,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.network.entities.Caregiver
-import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.model.beans.profiles.Caregiver
 import com.example.safechild.viewmodel.ServViewModel
-import kotlinx.coroutines.launch
 
 val districts = listOf(
     "ANCON", "ATE", "BARRANCO", "BELLAVISTA", "BRENA", "CARABAYLLO", "CHACLACAYO", "CHORRILLOS",

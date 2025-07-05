@@ -25,8 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.network.entities.Caregiver
-import com.example.safechild.network.entities.Schedule
+import com.example.safechild.model.beans.profiles.Caregiver
+import com.example.safechild.model.beans.schedules.Schedule
 import com.example.safechild.viewmodel.ServViewModel
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons

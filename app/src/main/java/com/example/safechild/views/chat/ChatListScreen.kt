@@ -1,6 +1,5 @@
 package com.example.safechild.views
 
-import TopBar
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.network.entities.Message
-import com.example.safechild.network.retrofit.RetrofitClient
+import com.example.safechild.model.beans.messaging.Message
+import com.example.safechild.model.client.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +29,7 @@ fun ChatListScreen(navController: NavHostController) {
     val userId = 1L // usuario actual
 
     LaunchedEffect(Unit) {
-        RetrofitClient.apiService.getChats(userId).enqueue(object : Callback<List<Message>> {
+        RetrofitClient.messagingApiService.getChats(userId).enqueue(object : Callback<List<Message>> {
             override fun onResponse(call: Call<List<Message>>, response: Response<List<Message>>) {
                 if (response.isSuccessful) {
                     val messages = response.body() ?: emptyList()
