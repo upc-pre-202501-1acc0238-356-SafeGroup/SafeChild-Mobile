@@ -1,4 +1,4 @@
-package com.example.safechild.views.iam.profile
+package com.example.safechild.view.iam.profile
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.views.iam.signup.districts
+import com.example.safechild.view.iam.signup.districts
 import com.example.safechild.viewmodel.ServViewModel
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.safechild.views.nav
+package com.example.safechild.view.nav
 
 import Payments
 import TopBar
@@ -14,18 +14,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.safechild.viewmodel.PaymentMethodViewModel
+import com.example.safechild.viewmodel.payments.PaymentMethodViewModel
 import com.example.safechild.viewmodel.ServViewModel
-import com.example.safechild.views.ChatDetailScreen
-import com.example.safechild.views.ChatListScreen
-import com.example.safechild.views.home.View1
-import com.example.safechild.views.iam.UserTypeSelectionScreen
-import com.example.safechild.views.iam.login.LoginScreen
-import com.example.safechild.views.iam.signup.SignUpCaregiverScreen
-import com.example.safechild.views.iam.signup.CaregiverProfileSetupScreen
-import com.example.safechild.views.iam.profile.CaregiverProfileScreen
-import com.example.safechild.views.services.ServiceDetails
-import com.example.safechild.views.services.ServiceList
+import com.example.safechild.view.ChatDetailScreen
+import com.example.safechild.view.ChatListScreen
+import com.example.safechild.view.home.View1
+import com.example.safechild.view.iam.UserTypeSelectionScreen
+import com.example.safechild.view.iam.login.LoginScreen
+import com.example.safechild.view.iam.signup.SignUpCaregiverScreen
+import com.example.safechild.view.iam.signup.CaregiverProfileSetupScreen
+import com.example.safechild.view.iam.profile.CaregiverProfileScreen
+import com.example.safechild.view.services.ServiceDetails
+import com.example.safechild.view.services.ServiceList
 
 @Composable
 fun Navigator(

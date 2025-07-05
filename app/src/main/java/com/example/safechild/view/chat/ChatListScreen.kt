@@ -1,4 +1,4 @@
-package com.example.safechild.views
+package com.example.safechild.view
 
 import android.util.Log
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package com.example.safechild.views.home
+package com.example.safechild.view.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

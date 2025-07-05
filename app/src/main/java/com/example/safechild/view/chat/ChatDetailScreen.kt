@@ -1,4 +1,4 @@
-package com.example.safechild.views
+package com.example.safechild.view
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*

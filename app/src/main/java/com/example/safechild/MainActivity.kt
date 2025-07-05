@@ -9,8 +9,8 @@ import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
 import com.example.safechild.model.beans.messaging.Message
 import com.example.safechild.model.client.RetrofitClient
-import com.example.safechild.viewmodel.PaymentMethodViewModel
-import com.example.safechild.views.nav.Navigator
+import com.example.safechild.viewmodel.payments.PaymentMethodViewModel
+import com.example.safechild.view.nav.Navigator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

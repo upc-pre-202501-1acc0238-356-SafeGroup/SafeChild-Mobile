@@ -1,4 +1,4 @@
-package com.example.safechild.views.iam.signup
+package com.example.safechild.view.iam.signup
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*

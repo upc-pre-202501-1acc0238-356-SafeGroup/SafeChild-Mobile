@@ -1,4 +1,4 @@
-package com.example.safechild.views.services
+package com.example.safechild.view.services
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,17 +16,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.safechild.model.beans.profiles.Caregiver
-import com.example.safechild.model.beans.schedules.Schedule
 import com.example.safechild.viewmodel.ServViewModel
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons

@@ -1,4 +1,4 @@
-package com.example.safechild.views.iam.login
+package com.example.safechild.view.iam.login
 
 
 import android.widget.Toast

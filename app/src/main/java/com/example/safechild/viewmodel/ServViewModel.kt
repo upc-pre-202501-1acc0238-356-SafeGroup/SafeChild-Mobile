@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.safechild.model.beans.profiles.Caregiver
 import com.example.safechild.model.beans.iam.SignUpRequest
 import com.example.safechild.model.client.RetrofitClient
-import com.example.safechild.views.iam.login.globalToken
+import com.example.safechild.view.iam.login.globalToken
 import kotlinx.coroutines.launch
 
 class ServViewModel : ViewModel() {

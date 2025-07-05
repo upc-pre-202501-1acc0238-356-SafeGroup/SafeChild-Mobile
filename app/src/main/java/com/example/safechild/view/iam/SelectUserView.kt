@@ -1,4 +1,4 @@
-package com.example.safechild.views.iam
+package com.example.safechild.view.iam
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.example.safechild.views.services
+package com.example.safechild.view.services
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

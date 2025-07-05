@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.safechild.model.beans.payments.PaymentMethod
-import com.example.safechild.viewmodel.PaymentMethodViewModel
+import com.example.safechild.viewmodel.payments.PaymentMethodViewModel
 
 @Composable
 fun Payments(
