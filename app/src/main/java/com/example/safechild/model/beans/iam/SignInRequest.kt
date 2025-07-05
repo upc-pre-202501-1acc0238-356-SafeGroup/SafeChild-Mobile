@@ -1,4 +1,4 @@
-package com.example.safechild.network.entities.iam
+package com.example.safechild.model.beans.iam
 
 data class SignInRequest(
     val username: String,
