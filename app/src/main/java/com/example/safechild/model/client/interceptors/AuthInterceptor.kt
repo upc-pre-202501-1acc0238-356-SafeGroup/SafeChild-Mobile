@@ -1,9 +1,7 @@
-package com.example.safechild.network
-
+package com.example.safechild.model.client.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import com.example.safechild.views.iam.login.globalToken
 
 class AuthInterceptor(private val tokenProvider: () -> String?) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
