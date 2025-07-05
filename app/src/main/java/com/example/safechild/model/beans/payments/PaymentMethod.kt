@@ -1,4 +1,4 @@
-package com.example.safechild.network.room.model.beans
+package com.example.safechild.model.beans.payments
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

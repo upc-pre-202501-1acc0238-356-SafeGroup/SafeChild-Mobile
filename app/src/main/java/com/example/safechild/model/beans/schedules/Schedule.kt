@@ -1,4 +1,4 @@
-package com.example.safechild.network.entities
+package com.example.safechild.model.beans.schedules
 
 data class Schedule(
     val weekDay: String,

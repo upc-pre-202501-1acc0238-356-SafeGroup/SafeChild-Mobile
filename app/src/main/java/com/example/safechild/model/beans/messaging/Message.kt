@@ -1,4 +1,4 @@
-package com.example.safechild.network.entities
+package com.example.safechild.model.beans.messaging
 
 import com.google.gson.annotations.SerializedName
 
