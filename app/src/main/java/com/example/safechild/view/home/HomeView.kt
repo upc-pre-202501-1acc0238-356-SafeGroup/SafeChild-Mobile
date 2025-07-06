@@ -18,29 +18,32 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun View1(nav:NavHostController){
-
-    Scaffold (
-        modifier = Modifier.fillMaxSize(),
-
-
-    ){
-            innerPadding->Principal(
-        modifier=Modifier.padding(innerPadding),
-        nav
+//
+//    Scaffold (
+//        modifier = Modifier.fillMaxSize(),
+//
+//
+//    ){
+//            innerPadding->Principal(
+//        modifier=Modifier.padding(innerPadding),
+//        nav
+//    )
+//    }
+    Principal(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        nav = nav
     )
-    }
 }
 
 @Composable
 fun Principal(modifier: Modifier,nav: NavHostController){
 
 
-    Column(){
+    Column(modifier = modifier){
         ElevatedButton(
             colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
             modifier = Modifier
                 .padding(50.dp)
-                .padding(vertical = 50.dp)
                 .width(300.dp),
 
             onClick = { nav.navigate("Payments") }
@@ -54,7 +57,6 @@ fun Principal(modifier: Modifier,nav: NavHostController){
             colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
             modifier = Modifier
                 .padding(50.dp)
-                .padding(vertical = 50.dp)
                 .width(300.dp),
 
             onClick = { nav.navigate("chatList") }
@@ -68,7 +70,6 @@ fun Principal(modifier: Modifier,nav: NavHostController){
             colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
             modifier = Modifier
                 .padding(50.dp)
-                .padding(vertical = 50.dp)
                 .width(300.dp),
 
             onClick = { nav.navigate("serviceList") }
@@ -83,7 +84,6 @@ fun Principal(modifier: Modifier,nav: NavHostController){
             colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
             modifier = Modifier
                 .padding(50.dp)
-                .padding(vertical = 50.dp)
                 .width(300.dp),
 
             onClick = { nav.navigate("PaymentsView") }
