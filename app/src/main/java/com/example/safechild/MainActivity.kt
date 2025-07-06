@@ -9,30 +9,39 @@ import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
 import com.example.safechild.model.beans.messaging.Message
 import com.example.safechild.model.client.RetrofitClient
+import com.example.safechild.model.storage.UserSessionManager
+import com.example.safechild.view.iam.login.globalId
+import com.example.safechild.view.iam.login.globalToken
 import com.example.safechild.viewmodel.payments.PaymentMethodViewModel
 import com.example.safechild.view.nav.Navigator
+import com.example.safechild.viewmodel.payments.PaymentViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : ComponentActivity() {
 
-    val viewModel by viewModels<PaymentMethodViewModel>()
+    val paymentMethodViewModel by viewModels<PaymentMethodViewModel>()
+    val paymentViewModel by viewModels<PaymentViewModel>()
+
     val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        globalId = UserSessionManager.getUserId(context)
+        globalToken = UserSessionManager.getToken(context)
+
         setContent {
             val navController = rememberNavController()
             Navigator(
                 navController = navController,
-                context = context,
-                paymentMethodViewModel = viewModel
-
+                context = context
             )
         }
         getMessagesFromBackend(3)
+
     }
     private fun getMessagesFromBackend(chatId: Long) {
         RetrofitClient.messagingApiService.getChats(chatId).enqueue(object : Callback<List<Message>> {
