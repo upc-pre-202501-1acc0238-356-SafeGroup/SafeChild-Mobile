@@ -1,7 +1,7 @@
 package com.example.safechild.model.beans.payments
 
 data class Payment(
-    val id: Int,
+    val id: Long,
     val currency: String,
     val paymentStatus: String,
     val amount: Int,

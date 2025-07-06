@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "payment_methods")
 data class PaymentMethod(
     @PrimaryKey(autoGenerate = true)
-    var id: Int?,
+    var id: Long?,
 
     @ColumnInfo(name = "card_holder_name")
     var cardHolderName: String,
