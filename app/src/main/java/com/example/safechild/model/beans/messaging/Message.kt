@@ -9,8 +9,3 @@ data class Message(
     @SerializedName("content") val content: String,
     @SerializedName("timestamp") val timestamp: String
 )
-
-data class Person(
-    @SerializedName("id") val id: Long,
-    @SerializedName("username") val username: String
-)
