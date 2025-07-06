@@ -79,6 +79,20 @@ fun Principal(modifier: Modifier,nav: NavHostController){
             )
         }
 
+        ElevatedButton(
+            colors = ButtonDefaults.buttonColors(Color(6,105,191,255)),
+            modifier = Modifier
+                .padding(50.dp)
+                .padding(vertical = 50.dp)
+                .width(300.dp),
+
+            onClick = { nav.navigate("PaymentsView") }
+        ){
+            Text(
+                text = "Payments",fontSize = 20.sp,
+                color = Color.White,fontWeight = FontWeight.Bold
+            )
+        }
 
 
     }
