@@ -24,15 +24,21 @@ import com.example.safechild.view.iam.login.LoginScreen
 import com.example.safechild.view.iam.signup.SignUpCaregiverScreen
 import com.example.safechild.view.iam.signup.CaregiverProfileSetupScreen
 import com.example.safechild.view.iam.profile.CaregiverProfileScreen
+import com.example.safechild.view.payments.PaymentsView
 import com.example.safechild.view.services.ServiceDetails
 import com.example.safechild.view.services.ServiceList
+import com.example.safechild.viewmodel.profiles.ProfileViewModel
+import com.example.safechild.viewmodel.payments.PaymentViewModel
 
 @Composable
 fun Navigator(
     navController: NavHostController = rememberNavController(),
     context: Context,
-    paymentMethodViewModel: PaymentMethodViewModel,
-    servViewModel: ServViewModel = viewModel()
+    paymentMethodViewModel: PaymentMethodViewModel = viewModel(),
+    paymentViewModel: PaymentViewModel = viewModel(),
+    servViewModel: ServViewModel = viewModel(),
+    profileViewModel : ProfileViewModel = viewModel()
+
 ) {
     val currentRoute = navController.currentBackStackEntryFlow.collectAsState(initial = null).value?.destination?.route
 
@@ -79,7 +85,10 @@ fun Navigator(
                 View1(nav = navController)
             }
             composable("Payments") {
-                Payments(paymentMethodViewModel, navController, context)
+                Payments(paymentMethodViewModel, servViewModel = servViewModel, navController, context)
+            }
+            composable("PaymentsView") {
+                PaymentsView(paymentViewModel, profileViewModel = profileViewModel,navController, context)
             }
             composable("chatList") {
                 ChatListScreen(navController = navController)
