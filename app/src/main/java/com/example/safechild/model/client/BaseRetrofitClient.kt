@@ -10,16 +10,10 @@ abstract class BaseRetrofitClient {
     companion object {
         const val BASE_URL = "http://192.168.18.21:8093/"
 
-        @Volatile
-        private var token: String? = null
 
-        fun updateToken(newToken: String?) {
-            token = newToken
-        }
 
         val retrofit: Retrofit by lazy {
             val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor { token })
                 .build()
 
             Retrofit.Builder()
