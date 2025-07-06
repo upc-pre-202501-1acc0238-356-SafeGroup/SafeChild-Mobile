@@ -1,6 +1,5 @@
 package com.example.safechild.view.iam.login
 
-
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -23,10 +22,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import com.example.safechild.model.beans.iam.SignInRequest
 import com.example.safechild.model.client.BaseRetrofitClient
 import com.example.safechild.model.client.RetrofitClient
+import com.example.safechild.model.storage.UserSessionManager
 
-var globalToken: String? = null // Puedes mover esto a un ViewModel o DataStore
-
-
+var globalId: Long? = null
+var globalToken: String? = null
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -56,9 +55,12 @@ fun LoginScreen(navController: NavHostController) {
                     )
                     if (response.isSuccessful && response.body() != null) {
                         val signInResponse = response.body()!!
+
+                        UserSessionManager.saveUserCredentials(context, signInResponse.id, signInResponse.token)
+                        globalId = signInResponse.id
                         globalToken = signInResponse.token
-                        BaseRetrofitClient.updateToken(globalToken)// Guarda el token
-                        Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Inicio de sesión exitoso ${globalId}", Toast.LENGTH_SHORT).show()
+
                         navController.navigate("P1") {
                             popUpTo("userTypeSelection") { inclusive = true }
                         }
