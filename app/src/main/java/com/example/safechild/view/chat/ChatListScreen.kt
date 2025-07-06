@@ -1,5 +1,6 @@
 package com.example.safechild.view
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,12 +10,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.safechild.model.beans.messaging.Message
 import com.example.safechild.model.client.RetrofitClient
+import com.example.safechild.viewmodel.profiles.ProfileViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,11 +25,11 @@ import retrofit2.Response
 data class ChatPreview(val receiverId: Long, val name: String)
 
 @Composable
-fun ChatListScreen(navController: NavHostController) {
+fun ChatListScreen(navController: NavHostController, profileViewModel: ProfileViewModel, context: Context) {
     var chats by remember { mutableStateOf<List<ChatPreview>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
 
-    val userId = 1L // usuario actual
+    val userId = profileViewModel.getCurrentUserId(context)
 
     LaunchedEffect(Unit) {
         RetrofitClient.messagingApiService.getChats(userId).enqueue(object : Callback<List<Message>> {
@@ -55,23 +58,12 @@ fun ChatListScreen(navController: NavHostController) {
         })
     }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {  }
-    ) { innerPadding ->
+    Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         if (isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                contentAlignment = androidx.compose.ui.Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else {
             LazyColumn(
                 modifier = Modifier
-                    .padding(innerPadding)
                     .fillMaxSize()
             ) {
                 items(chats) { chat ->
