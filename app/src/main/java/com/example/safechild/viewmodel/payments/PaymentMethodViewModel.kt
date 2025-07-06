@@ -15,12 +15,7 @@ import kotlinx.coroutines.launch
 class PaymentMethodViewModel: ViewModel() {
     var paymentMethod: PaymentMethod = PaymentMethod(1, "", "", "", "", "",)
 
-    suspend fun getPaymentMethod(id: Int){
-        val response = RetrofitClient.paymentApiService.getPaymentMethodId(id)
-        if (response.body()!=null){
-            paymentMethod = response.body()!!
-        }
-    }
+
 
     var listaPaymentMethod: MutableList<PaymentMethod> by mutableStateOf(arrayListOf())
 
