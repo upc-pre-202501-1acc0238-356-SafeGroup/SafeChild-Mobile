@@ -9,6 +9,7 @@ abstract class BaseRetrofitClient {
 
     companion object {
         const val BASE_URL = "http://192.168.18.21:8093/"
+        //private const val BASE_URL = "https://safechild-aeb7cxdtbwgcbcbc.canadacentral-01.azurewebsites.net/"
 
 
 
