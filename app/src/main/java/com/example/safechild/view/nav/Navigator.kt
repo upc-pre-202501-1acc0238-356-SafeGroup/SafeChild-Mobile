@@ -85,13 +85,13 @@ fun Navigator(
                 View1(nav = navController)
             }
             composable("Payments") {
-                Payments(paymentMethodViewModel, servViewModel = servViewModel, navController, context)
+                Payments(paymentMethodViewModel, navController, context)
             }
             composable("PaymentsView") {
-                PaymentsView(paymentViewModel, profileViewModel = profileViewModel,navController, context)
+                PaymentsView(paymentViewModel, profileViewModel,navController, context)
             }
             composable("chatList") {
-                ChatListScreen(navController = navController)
+                ChatListScreen(navController = navController,profileViewModel, context)
             }
             composable(
                 "chatDetails/{senderId}/{receiverId}/{chatName}",
