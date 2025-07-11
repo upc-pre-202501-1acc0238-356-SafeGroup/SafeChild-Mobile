@@ -5,24 +5,18 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
 import com.example.safechild.model.beans.messaging.Message
 import com.example.safechild.model.client.RetrofitClient
 import com.example.safechild.model.storage.UserSessionManager
 import com.example.safechild.view.iam.login.globalId
 import com.example.safechild.view.iam.login.globalToken
-import com.example.safechild.viewmodel.payments.PaymentMethodViewModel
 import com.example.safechild.view.nav.Navigator
-import com.example.safechild.viewmodel.payments.PaymentViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : ComponentActivity() {
-
-    val paymentMethodViewModel by viewModels<PaymentMethodViewModel>()
-    val paymentViewModel by viewModels<PaymentViewModel>()
 
     val context = this
 
