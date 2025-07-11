@@ -72,10 +72,10 @@ fun Principal(modifier: Modifier,nav: NavHostController){
                 .padding(50.dp)
                 .width(300.dp),
 
-            onClick = { nav.navigate("serviceList") }
+            onClick = { nav.navigate("scheduleList") }
         ){
             Text(
-                text = "Servicios",fontSize = 20.sp,
+                text = "Horarios",fontSize = 20.sp,
                 color = Color.White,fontWeight = FontWeight.Bold
             )
         }

@@ -1,6 +1,7 @@
 package com.example.safechild.view.nav
 
 import Payments
+import ScheduleDetails
 import TopBar
 import android.content.Context
 import androidx.compose.foundation.layout.padding
@@ -25,8 +26,10 @@ import com.example.safechild.view.iam.signup.SignUpCaregiverScreen
 import com.example.safechild.view.iam.signup.CaregiverProfileSetupScreen
 import com.example.safechild.view.iam.profile.CaregiverProfileScreen
 import com.example.safechild.view.payments.PaymentsView
+import com.example.safechild.view.services.ScheduleList
 import com.example.safechild.view.services.ServiceDetails
 import com.example.safechild.view.services.ServiceList
+import com.example.safechild.viewmodel.appointments.AppointViewModel
 import com.example.safechild.viewmodel.profiles.ProfileViewModel
 import com.example.safechild.viewmodel.payments.PaymentViewModel
 
@@ -37,7 +40,8 @@ fun Navigator(
     paymentMethodViewModel: PaymentMethodViewModel = viewModel(),
     paymentViewModel: PaymentViewModel = viewModel(),
     servViewModel: ServViewModel = viewModel(),
-    profileViewModel : ProfileViewModel = viewModel()
+    profileViewModel : ProfileViewModel = viewModel(),
+    appointmentViewModel: AppointViewModel = viewModel()
 
 ) {
     val currentRoute = navController.currentBackStackEntryFlow.collectAsState(initial = null).value?.destination?.route
@@ -118,6 +122,13 @@ fun Navigator(
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getString("id")?.toLong() ?: 0L
                 ServiceDetails(id = id, viewModel = servViewModel, navController = navController)
+            }
+            composable("scheduleList") {
+                ScheduleList(appointmentViewModel, profileViewModel, navController, context)
+            }
+            composable("scheduleDetails/{scheduleId}") { backStackEntry ->
+                val scheduleId = backStackEntry.arguments?.getString("scheduleId")?.toLongOrNull()
+                ScheduleDetails(scheduleId = scheduleId, appointmentViewModel = appointmentViewModel)
             }
         }
     }
